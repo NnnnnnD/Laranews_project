@@ -33,7 +33,9 @@
                                 <th>id</th>
                                 <th>Nama Artikel</th>
                                 <th>Slug</th>
+                                <th>Kategori</th>
                                 <th>Author</th>
+                                <th>Gambar</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -42,14 +44,15 @@
                             <tr>
                                 <td>{{ $row->id}}</td>
                                 <td>{{ $row->judul}}</td>
-                                <td>{{ $row->slug}}</td
+                                <td>{{ $row->slug}}</td>
                                 <td>{{ $row->kategori->nama_kategori}}</td>
                                 <td>{{ $row->users->name}}</td>
+                                <td><img src="{{ asset('uploads/' . $row->gambar_artikel) }}" width="100"> <br><br></td>
                                 <td>
-                                    <a href="{{ route('kategori.edit', $row->id) }}" class="btn btn-danger btn-sm">
+                                    <a href="{{ route('artikel.edit', $row->id) }}" class="btn btn-danger btn-sm">
                                         <i class="fas fa-pencil-alt fa-2x"></i></a>
                                    
-                                    <form action="{{ route('kategori.destroy', $row->id)}}" method="post" class="d-inline">
+                                    <form action="{{ route('artikel.destroy', $row->id)}}" method="post" class="d-inline">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-link btn-danger btn-md">

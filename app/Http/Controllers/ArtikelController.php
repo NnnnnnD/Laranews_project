@@ -6,6 +6,7 @@ use App\Models\Artikel;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ArtikelController extends Controller
@@ -73,6 +74,13 @@ class ArtikelController extends Controller
     public function edit(string $id)
     {
         //
+        $artikel = Artikel::find($id);
+        $kategori = Kategori::all();
+        
+        return view('Dash.artikel.edit', [
+            'artikel' => $artikel,
+            'kategori' => $kategori,
+        ]);
     }
 
     /**
@@ -80,7 +88,40 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        /*
+        $this->validate($request,[
+            'judul' => 'required|min:4',
+        ]);*/
+
+        if(empty($request->file('gambar_artikel'))){
+            $artikel = Artikel::find($id);
+            $artikel->Update([
+                'judul' => $request->judul,
+                'body' => $request->body,
+                'slug' => Str::slug($request->judul),
+                'kategori_id' => $request ->kategori_id,
+                'is_active' => $request ->is_active,
+                'user_id' => Auth::id(),
+            ]);
+            return redirect()->route('artikel.index')->with(['success'=>'Data Berhasil Di update']);
+        }else{
+            $artikel = Artikel::find($id);
+            Storage::delete($artikel->gambar_artikel);
+            $artikel->Update([
+                'judul' => $request->judul,
+                'body' => $request->body,
+                'slug' => Str::slug($request->judul),
+                'kategori_id' => $request ->kategori_id,
+                'is_active' => $request ->is_active,
+                'user_id' => Auth::id(),
+                'gambar_artikel' =>$request->file('gambar_artikel')->store('artikel'),
+            ]);
+        return redirect()->route('artikel.index')->with(['success'=>'Data Berhasil Di update']);
+        }
+
+        
+        
+       
     }
 
     /**
@@ -89,5 +130,10 @@ class ArtikelController extends Controller
     public function destroy(string $id)
     {
         //
+        $artikel = Artikel::find($id);
+        Storage::delete($artikel->gambar_artikel);
+        $artikel -> delete();
+
+        return redirect() -> route('artikel.index')->with(['success' => 'Data Berhasil dihapus']);
     }
 }

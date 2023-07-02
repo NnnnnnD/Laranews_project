@@ -88,11 +88,6 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        /*
-        $this->validate($request,[
-            'judul' => 'required|min:4',
-        ]);*/
-
         if(empty($request->file('gambar_artikel'))){
             $artikel = Artikel::find($id);
             $artikel->Update([

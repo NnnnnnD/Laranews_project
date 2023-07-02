@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Kategori;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 class KategoriController extends Controller
 {
     /**
@@ -40,7 +41,8 @@ class KategoriController extends Controller
             'nama_kategori' => $request->nama_kategori,
             'slug' => Str::slug($request->nama_kategori)
         ]);
-        return redirect()->route('kategori.index')->with(['success' => 'Data Berhasil Tersimpan']);
+        Alert::success('Berhasil', 'Data Berhasil Tersimpan');
+        return redirect()->route('kategori.index');
     }
 
     /**
@@ -73,7 +75,8 @@ class KategoriController extends Controller
         $kategori = Kategori::findorFail($id);
         $kategori -> update($data);
 
-        return redirect() -> route('kategori.index')->with(['success' => 'Data Berhasil Terupdate']);
+        Alert::info('Berhasil', 'Data Berhasil Terupdate');
+        return redirect() -> route('kategori.index');
     }
 
     /**
@@ -86,6 +89,7 @@ class KategoriController extends Controller
 
         $kategori -> delete();
 
-        return redirect() -> route('kategori.index')->with(['success' => 'Data Berhasil dihapus']);
+        Alert::success('Berhasil', 'Data Berhasil Terhapus');
+        return redirect() -> route('kategori.index');
     }
 }

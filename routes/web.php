@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\ArtikelController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::resource('kategori', KategoriController::class);
+Route::resource('artikel', ArtikelController::class);
+
+Auth::routes();

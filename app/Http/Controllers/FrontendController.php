@@ -7,8 +7,7 @@ use App\Models\Kategori;
 use App\Models\Slides;
 use Illuminate\Http\Request;
 
-class FrontendController extends Controller
-{
+class FrontendController extends Controller{
     public function index(){
         $category = Kategori::all();
         $artikel = Artikel::all();
@@ -20,10 +19,12 @@ class FrontendController extends Controller
         ]);
     }
     public function detail($slug) {
+        $category = Kategori::all();
         $artikel = Artikel::where('slug', $slug)->first();
 
         return view('frontend.layouts.detail-artikel' ,[
             'artikel' => $artikel,
+            'category' => $category,
         ]);
         
     }

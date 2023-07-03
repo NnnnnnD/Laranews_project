@@ -109,7 +109,7 @@ class SlidesController extends Controller
     {
         $slide =Slides::find($id);
         if (!$slide) {
-            return redirect()-> Dash()->with('success','Data Tidak ada');
+            return redirect()-> route('slides.index')->with('success','Data Tidak ada');
 
         } 
         Storage::delete($slide->gambar_slide);

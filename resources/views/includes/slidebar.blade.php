@@ -3,7 +3,7 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2">
-                    <img src="{{ asset('Ds/img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle">
+                    <img src="{{ asset('Dss/img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle">
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -76,15 +76,13 @@
                         <p>Artikel</p>
                     </a>
                 </li>
-
                 <li class="nav-item">
-                    <a data-toggle="collapse" href="#base">
-                        <i class="fas fa-layer-group"></i>
-                        <p>Base</p>
-                        <span class="caret"></span>
+                    <a href="{{route('slides.index')}}">
+                        <i class="fas fa-desktop"></i>
+                        <p>Slide Banner</p>
                     </a>
-                    
                 </li>
+
             </ul>
         </div>
     </div>

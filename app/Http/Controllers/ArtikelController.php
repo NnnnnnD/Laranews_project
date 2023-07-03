@@ -46,14 +46,7 @@ class ArtikelController extends Controller
         $data= $request->all();
         $data['slug'] = Str::slug($request->judul);
         $data['views'] = 0;
-        if (Auth::check()) {
-            $data['user_id'] = Auth::id();
-        } else {
-            // Handle the case when the user is not authenticated, e.g., set a default value or show an error message
-            // For example, you can set a default user ID like $data['user_id'] = 0;
-            // or you can show an error message and redirect the user back to the login page
-            return redirect()->route('login')->with(['error' => 'You need to login to create an Artikel.']);
-        }
+        $data['user_id'] = Auth::id();
         $data['gambar_artikel'] = $request->file('gambar_artikel')->store('artikel');
         
         Artikel::create($data);

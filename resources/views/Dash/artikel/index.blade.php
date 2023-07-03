@@ -51,12 +51,12 @@
                                 <td>
                                     <a href="{{ route('artikel.edit', $row->id) }}" class="btn btn-danger btn-sm">
                                         <i class="fas fa-pencil-alt fa-2x"></i></a>
-                                   
                                     <form action="{{ route('artikel.destroy', $row->id)}}" method="post" class="d-inline">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-link btn-danger btn-md">
-                                            <i class="far fa-trash-alt fa-2x"></i>                                    </form>
+                                            <i class="far fa-trash-alt fa-2x"></i>                                    
+                                    </form>
                                 </td>
                             </tr>
                             @empty

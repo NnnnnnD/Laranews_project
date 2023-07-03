@@ -13,10 +13,18 @@ class FrontendController extends Controller
         $category = Kategori::all();
         $artikel = Artikel::all();
         $slides = Slides::all();
-        return view('frontend.layouts.front', [
+        return view('frontend.home', [
             'category' => $category,
             'artikel' => $artikel,
             'slides' => $slides
         ]);
+    }
+    public function detail($slug) {
+        $artikel = Artikel::where('slug', $slug)->first();
+
+        return view('frontend.layouts.detail-artikel' ,[
+            'artikel' => $artikel,
+        ]);
+        
     }
 }

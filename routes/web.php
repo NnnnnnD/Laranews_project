@@ -23,6 +23,7 @@ use App\Http\Controllers\SlidesController;
     return view('welcome');
 });*/
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/detail-artikel/{$slug}', [FrontendController::class, 'detail'])->name('detail-artikel');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('kategori', KategoriController::class);

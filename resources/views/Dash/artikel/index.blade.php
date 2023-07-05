@@ -1,14 +1,11 @@
 @extends('layouts.default')
-
 @section('content')
 <div class="panel-header bg-primary-gradient">
 	<div class="page-inner py-5">
 		<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-			
 		</div>
 	</div>
 </div>
-
 <div class="page-inner mt--5">
 	<div class="row">
 		<div class="col-md-12">
@@ -24,7 +21,6 @@
                         <div class ="alert alert-primary">
                             {{Session('success')}}
                         </div>
-                        
                     @endif
 					<div class="table-responsive">
 					<table class="table table bordered">
@@ -47,7 +43,7 @@
                                 <td>{{ $row->slug}}</td>
                                 <td>{{ $row->kategori->nama_kategori}}</td>
                                 <td>{{ $row->users->name}}</td>
-                                <td><img src="{{ asset('uploads/' . $row->gambar_artikel) }}" width="100"> <br><br></td>
+                                <td><img src="{{ asset('uploads/ ' . $row->gambar_artikel) }}" width="100"> <br><br></td>
                                 <td>
                                     <a href="{{ route('artikel.edit', $row->id) }}" class="btn btn-danger btn-sm">
                                         <i class="fas fa-pencil-alt fa-2x"></i></a>

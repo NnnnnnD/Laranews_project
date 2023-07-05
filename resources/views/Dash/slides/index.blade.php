@@ -71,7 +71,9 @@
                         </tbody>
                     </table>
 					</div>
-
+                    <a href="{{ route('dashboard') }}" class="btn btn-primary mt-3">
+                        <i class="fas fa-arrow-left md-5"></i>  Back
+                    </a>
 				</div>
 			</div>
 		</div>

@@ -1,4 +1,5 @@
 <script src="{{ asset('Ds/js/core/jquery.3.2.1.min.js') }}"></script>
+
 	<script src="{{ asset('Ds/js/core/popper.min.js') }}"></script>
 	<script src="{{ asset('Ds/js/core/bootstrap.min.js') }}"></script>
 

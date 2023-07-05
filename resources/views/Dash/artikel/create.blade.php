@@ -1,14 +1,11 @@
 @extends('layouts.default')
-
 @section('content')
 <div class="panel-header bg-primary-gradient">
 	<div class="page-inner py-5">
-		<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-			
+		<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">		
 		</div>
 	</div>
 </div>
-
 <div class="page-inner mt--5">
 	<div class="row">
 		<div class="col-md-12">
@@ -16,26 +13,25 @@
 				<div class="card-header">
 					<div class="card-head-row">
 						<div class="card-title">Form Artikel</div>
-                        <a href="{{route('artikel.create')}}" class = "btn btn-warning btn-sm ml-auto">Back</a>
+                        <a href="{{ route('artikel.create') }}" class="btn btn-warning btn-sm ml-auto">Back</a>
 					</div>
 				</div>
 				<div class="card-body">
-                    <form method="post" action="{{ route('artikel.store')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('artikel.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="judul">judul artikel</label>
-                            <input type="text" name="judul" class="form-control" placeholder="Masukan judul artikel">
+                            <label for="judul">Judul artikel</label>
+                            <input type="text" name="judul" class="form-control" placeholder="Masukkan judul artikel">
                         </div>
                         <div class="form-group">
                             <label for="body">Body</label>
-                            <textarea type="text" name="body" class="form-control"></textarea>
-                            
+                            <textarea name="body" id="body" class="form-control summernote"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kategori">Kategori</label>
                             <select name="kategori_id" class="form-control">
                                 @foreach ($kategori as $row)
-                                    <option value="{{$row->id}}">{{$row->nama_kategori}}</option> 
+                                    <option value="{{ $row->id }}">{{ $row->nama_kategori }}</option> 
                                 @endforeach
                             </select>
                         </div>
@@ -45,7 +41,7 @@
                         </div>
                         <div class="form-group">
                             <label for="status">Status</label>
-                            <select  name="is_active" class="form-control">
+                            <select name="is_active" class="form-control">
                                 <option value="1">Publish</option>
                                 <option value="0">Draft</option>
                             </select>
@@ -60,4 +56,16 @@
 		</div>
 	</div>
 </div>
+
+<!-- Include the Summernote JS and CSS -->
+@section('scripts')
+    @parent
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.summernote').summernote();
+        });
+    </script>
+@endsection
 @endsection

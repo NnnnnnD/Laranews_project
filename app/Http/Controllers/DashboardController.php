@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Artikel;
+
 
 use Illuminate\Http\Request;
 
@@ -11,8 +13,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
-        return view ('Dash.dashboard');
+        $artikel = Artikel::all(); // Fetch all articles from the database
+
+        return view('Dash.dashboard', compact('artikel'));
     }
 
     /**

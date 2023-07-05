@@ -7,7 +7,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SlidesController;
-
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,10 +25,27 @@ use App\Http\Controllers\SlidesController;
     return view('welcome');
 });*/
 Route::get('/home', [FrontendController::class, 'index']);
-Route::get('/detail-artikel/{slug}', [FrontendController::class, 'detail'])->name('detail-artikel');
 
+Route::get('/detail-artikel/{slug}', [FrontendController::class, 'detail'])->name('detail-artikel');
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('kategori', KategoriController::class);
 Route::resource('artikel', ArtikelController::class);
 Route::resource('slides', SlidesController::class);
+Route::resource('komentar', CommentController::class);
+Route::post('/comments/reply/{comment}', 'CommentController@reply')->name('comments.reply');
+Route::post('/reply', [ReplyController::class, 'store'])->name('reply.store');
+Route::post('/replies', [ReplyController::class, 'store'])->name('reply.store');
+
+
+
+// Login and Register routes without guest middleware
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'Auth\LoginController@login');
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/register', 'Auth\RegisterController@register');
+
+// Logout route
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+// Other authentication-related routes (password reset, email verification, etc.)
 Auth::routes();

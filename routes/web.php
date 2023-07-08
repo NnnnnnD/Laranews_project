@@ -21,11 +21,12 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+Route::get('/home', function () {
+    return view('');
+});
+Route::get('/kategori/{id}', [ArtikelController::class, 'kategori'])->name('kategori');
+Route::get('/kategori/{id}', [FrontendController::class, 'kategori'])->name('kategori');
 Route::get('/home', [FrontendController::class, 'index']);
-
 Route::get('/detail-artikel/{slug}', [FrontendController::class, 'detail'])->name('detail-artikel');
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -33,10 +34,7 @@ Route::resource('kategori', KategoriController::class);
 Route::resource('artikel', ArtikelController::class);
 Route::resource('slides', SlidesController::class);
 Route::resource('komentar', CommentController::class);
-Route::post('/comments/reply/{comment}', 'CommentController@reply')->name('comments.reply');
 Route::post('/reply', [ReplyController::class, 'store'])->name('reply.store');
-Route::post('/replies', [ReplyController::class, 'store'])->name('reply.store');
-
 
 
 // Login and Register routes without guest middleware

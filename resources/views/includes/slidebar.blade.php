@@ -1,7 +1,7 @@
 <div class="sidebar sidebar-style-2">			
-    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+    <div class="sidebar-wrapper scrollbar scrollbar-inner ">
         <div class="sidebar-content">
-            <ul class="nav nav-primary">
+            <ul class="nav nav-primary ">
                 <li class="nav-item active">
                     <a data-toggle="collapse" href="home" class="collapsed" aria-expanded="false">
                         <i class="fas fa-home"></i>
@@ -13,6 +13,12 @@
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
                     <h4 class="text-section">Management</h4>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('dashboard')}}">
+                        <i class="fas fa-newspaper"></i>
+                        <p>Artikel</p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('kategori.index')}}">

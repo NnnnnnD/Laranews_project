@@ -124,4 +124,16 @@ class ArtikelController extends Controller
 
         return redirect() -> route('artikel.index')->with(['success' => 'Data Berhasil dihapus']);
     }
+
+   
+
+    public function kategori($id){
+        $kategori = Kategori::find($id);
+        $artikel = $kategori->artikel;
+
+        return view('frontend.kategori.onKategori', compact('artikel', 'kategori'));
+    }
+
+
+
 }

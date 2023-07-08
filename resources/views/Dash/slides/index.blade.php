@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="panel-header bg-primary-gradient">
+<div class="panel-header bg-primary-subtle">
 	<div class="page-inner py-5">
 		<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 			
@@ -71,9 +71,6 @@
                         </tbody>
                     </table>
 					</div>
-                    <a href="{{ route('dashboard') }}" class="btn btn-primary mt-3">
-                        <i class="fas fa-arrow-left md-5"></i>  Back
-                    </a>
 				</div>
 			</div>
 		</div>

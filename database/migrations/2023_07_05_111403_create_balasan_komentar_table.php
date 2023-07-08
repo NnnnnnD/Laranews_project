@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('balasan_Komentar', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->Integer('komentar_id');
+            $table->Integer('artikel_id');
             $table->Integer('user_id');
             $table->text('content');
             $table->timestamps();

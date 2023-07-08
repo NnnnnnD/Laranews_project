@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artikel;
 use App\Models\komentar;
 use App\Models\Kategori;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,9 +26,11 @@ class CommentController extends Controller
         //
         $artikel = Artikel::all();
         $komentar = Komentar::all();
+        $user = User::all();
         return view('komentar.index', [
-            'komentars' => $komentar,
+            'komentar' => $komentar,
             'artikel' => $artikel,
+            'user' => $user,
         ]);
     }
 
@@ -58,7 +61,7 @@ class CommentController extends Controller
         'content' => $request->content,
     ]);
 
-    return redirect()->back()->with('success', 'komentar posted successfully.');
+    return redirect()->back()->with('success', 'Reply posted successfully.');
     }
 
     /**
@@ -88,8 +91,11 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(komentar $komentar)
+    public function destroy(string $id)
     {
-        //
+        $komentar = komentar::find($id);
+        $komentar -> delete();
+
+        return redirect() -> route('komentar.index')->with(['success' => 'Data Berhasil dihapus']);
     }
 }

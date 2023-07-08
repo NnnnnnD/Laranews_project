@@ -25,22 +25,15 @@
 </head>
 <body data-background-color="dark">
 	<div class="wrapper">
-@include('includes.navbar')
-        
-        <!-- Slidebar -->
- @include('includes.slidebar')
-		<!-- End Sidebar -->
-
+		@include('includes.navbar')
+		@include('includes.slidebar')
 		<div class="main-panel">
 			<div class="content">
 				@yield('content')
-			</div>
-			<!-- footer -->
+			</div>	
 		</div>
-		
-		
 	</div>
-@include('includes.js')	
-@include('sweetalert::alert')
+	@include('includes.js')	
+	@include('sweetalert::alert')
 </body>
 </html>

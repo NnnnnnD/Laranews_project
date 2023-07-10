@@ -41,4 +41,5 @@
         <p>No articles found.</p>
     @endif
 </div>
+<br><br>
 @endsection

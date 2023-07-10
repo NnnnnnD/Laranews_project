@@ -2,14 +2,6 @@
 
 @section('content')
 <br><br>
-<style>
-    .card-img-top {
-        width: 100%;
-        height: 200px;
-        
-        object-fit: fill;
-    }
-</style>
     <div class="container">
         <div class="row">
             <div class="col-md-12 mt-3">
@@ -43,4 +35,12 @@
             </div>
         </div>
     </div>
+    <style>
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            
+            object-fit: fill;
+        }
+    </style>
 @endsection

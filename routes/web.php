@@ -22,11 +22,12 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/home', function () {
-    return view('');
+    return view('home');
 });
-Route::get('/kategori/{id}', [ArtikelController::class, 'kategori'])->name('kategori');
-Route::get('/kategori/{id}', [FrontendController::class, 'kategori'])->name('kategori');
+
 Route::get('/home', [FrontendController::class, 'index']);
+Route::get('/categories/{id}', [FrontendController::class, 'onKategori'])->name('onKategori');
+Route::get('/search', [ArtikelController::class, 'search'])->name('search');
 Route::get('/detail-artikel/{slug}', [FrontendController::class, 'detail'])->name('detail-artikel');
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

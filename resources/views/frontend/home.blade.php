@@ -18,14 +18,14 @@
                                         </a>
                                     </h5>
                                     <p class="card-text">
-                                        {!! Str::limit($row->body, 250) !!}
-                                        @if (strlen($row->body) > 250)
+                                        {!! Str::limit($row->body, 200) !!}
+                                        @if (strlen($row->body) > 200)
                                             <a href="{{route('detail-artikel', $row->slug)}}">Read More</a>
                                         @endif
                                     </p>
                                 </div>
                                 <div class="card-footer">
-                                    <div class="d-flex justify-content-between"> <!-- Menggunakan flexbox untuk mengatur posisi -->
+                                    <div class="d-flex justify-content-between"> 
                                         <small class="text-muted">Author: {{$row->users->name}}</small>
                                         <small class="text-muted">Category: {{$row->kategori->nama_kategori}}</small>
                                     </div>

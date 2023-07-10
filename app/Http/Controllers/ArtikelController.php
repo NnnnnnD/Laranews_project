@@ -125,14 +125,20 @@ class ArtikelController extends Controller
         return redirect() -> route('artikel.index')->with(['success' => 'Data Berhasil dihapus']);
     }
 
+    public function search(Request $request)
+{
+    $keyword = $request->input('keyword');
+    
+    // Melakukan pencarian berdasarkan judul atau isi artikel
+    $artikel = Artikel::where('judul', 'LIKE', "%$keyword%")
+                      ->orWhere('body', 'LIKE', "%$keyword%")
+                      ->get();
+    
+    return view('frontend.search', compact('artikel', 'keyword'));
+}
    
 
-    public function kategori($id){
-        $kategori = Kategori::find($id);
-        $artikel = $kategori->artikel;
-
-        return view('frontend.kategori.onKategori', compact('artikel', 'kategori'));
-    }
+    
 
 
 

@@ -10,14 +10,31 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/home" style="color: white;">Home</a>
                 </li>
-                @foreach ($category as $cat)
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">{{ $cat->nama_kategori }}</a>
-                  </li>
-                  @endforeach
-            </ul>
-            <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @foreach ($category as $cat)
+                        <li>
+                            <a class="dropdown-item" href="{{route('onKategori', $cat->id)}}">{{ $cat->nama_kategori }}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </li>
+                
+            </ul>
+            <form class="d-flex  mb-1" action="{{ route('search') }}" method="GET">
+                <div class="input-group ">
+                    <input class="form-control" type="search" name="keyword" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </div>
+            </form>
+            
+            <ul class="navbar-nav ml-auto ms-5">
+               
+                <li class="nav-item dropdown ">
                     @auth
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,19 +49,20 @@
                     @endguest
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @auth
-                        @if (Auth::user()->role === 'admin')
-                        <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        @endif
-                        <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
+                            @if (Auth::user()->role === 'admin')
+                                <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            @endif
+                                <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                         @endauth
                         @guest
-                        <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
-                        <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
+                            <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
+                            <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
                         @endguest
                     </ul>
                 </li>
             </ul>
         </div>
+        
     </div>
 </nav>
